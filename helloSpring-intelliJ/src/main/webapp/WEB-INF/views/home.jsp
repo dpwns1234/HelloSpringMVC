@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: nykim
@@ -13,5 +14,17 @@
   <body>
   <p><a href="${pageContext.request.contextPath}/offers">Show Current offers</a> </p>
   <p><a href="${pageContext.request.contextPath}/createOffer">add a new offer</a> </p>
+
+  <c:if test="${pageContext.request.userPrincipal.name != null}">
+
+      <c:url var="logoutUrl" value="/logout"/>
+
+      <form class="form-inline" action="${logoutUrl}" method="post">
+          <input type="submit" value="Log out" />
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+      </form>
+
+  </c:if>
+
   </body>
 </html>
